@@ -5,15 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Maestro Gerardo Lemus</title>
 <style>
+:root{ --speed: 0.85s; --gap: 700ms; }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{overflow-x:hidden}
-body{
-  background:#0A1931;color:#E8F0FF;font-family:Helvetica,Arial,sans-serif;
-  min-height:100vh;display:flex;align-items:center;justify-content:center;
-  background-image:linear-gradient(rgba(120,180,255,.07) 1px, transparent 1px),linear-gradient(90deg, rgba(120,180,255,.07) 1px, transparent 1px);
-  background-size:80px 80px;
-}
-.card{width:100%;border:1px solid rgba(180,220,255,.15);background:#101E38}
+body{background:#0A1931;color:#E8F0FF;font-family:Helvetica,Arial,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;background-image:linear-gradient(rgba(120,180,255,.07) 1px, transparent 1px),linear-gradient(90deg, rgba(120,180,255,.07) 1px, transparent 1px);background-size:80px 80px}
+.card{width:100%;border:1px solid rgba(180,220,255,.15);background:#101E38;overflow:hidden;position:relative}
+.rivet{position:absolute;width:12px;height:12px;background:radial-gradient(circle at 35% 35%, #E8F0FF 0%, #8BA8CC 25%, #4A5A73 60%, #1a2435 100%);border-radius:50%;box-shadow:inset -1px -1px 2px rgba(0,0,0,.8), inset 1px 1px 1px rgba(255,255,255,.6), 0 1px 3px rgba(0,0,0,.5);z-index:10}
+.rivet::after{content:'';position:absolute;width:3px;height:3px;background:rgba(255,255,255,.8);border-radius:50%;left:3px;top:2.5px}
+.r-tl{left:10px;top:10px} .r-tr{right:10px;top:10px} .r-bl{left:10px;bottom:10px} .r-br{right:10px;bottom:10px}
 .gl-wrap{position:relative}
 .gl{border-radius:50%;background:#000;border:2px solid #1a1a1a;display:grid;place-items:center;font-weight:900;color:#fff;z-index:2;position:relative}
 .gl-wrap::before,.gl-wrap::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:2px solid transparent;border-top-color:#00ff88;animation:spin 1s linear infinite}
@@ -21,74 +20,103 @@ body{
 @keyframes spin{to{transform:rotate(360deg)}}
 h1{line-height:.88;text-transform:uppercase}
 h1 .sol{font-weight:300;letter-spacing:.12em;color:#8BA8CC;display:block}
-h1 .para{font-weight:900;display:block;color:#7DD3FC}
-h1 .inm{font-weight:900;display:block;color:#7DD3FC}
-h1 i{display:inline-block;background:#FFD60A;border-radius:50%;box-shadow:0 0 10px #FFD60A}
+h1 .wrap{position:relative;display:block;overflow:hidden}
+.stack{position:relative;display:inline-block}
+.ghost{color:rgba(232,240,255,.18);font-weight:900;display:block;white-space:nowrap}
+.paint{position:absolute;left:0;top:0;color:#7DD3FC;font-weight:900;display:block;white-space:nowrap;clip-path:inset(0 100% 0 0)}
+.paint.active{animation:reveal var(--speed) cubic-bezier(.77,0,.175,1) forwards}
+@keyframes reveal{to{clip-path:inset(0 0% 0 0)}}
+.brush{position:absolute;top:50%;left:0;width:44px;height:28px;transform:translate(-100%, -50%) rotate(-15deg);z-index:3;pointer-events:none;opacity:0}
+.brush.show{opacity:1;animation:brushMove var(--speed) cubic-bezier(.77,0,.175,1) forwards}
+.brush::before{content:'';position:absolute;width:20px;height:20px;background:#FFD60A;border-radius:2px 8px 8px 2px;left:0;top:4px}
+.brush::after{content:'';position:absolute;width:32px;height:7px;background:linear-gradient(90deg,#8B4513,#D2691E);left:16px;top:10px;border-radius:0 4px 4px 0}
+@keyframes brushMove{0%{transform:translate(-100%, -50%) rotate(-15deg)}85%{transform:translate(calc(100% + 80vw), -50%) rotate(-5deg)}100%{opacity:0}}
 ul{list-style:none;border-top:1px dashed rgba(180,220,255,.15)}
-li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed rgba(180,220,255,.12)}
-li b{text-transform:uppercase} li i{font-style:normal;color:#8BA8CC;text-align:right;flex-shrink:0}
+li{position:relative;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px dashed rgba(180,220,255,.12);overflow:hidden}
+li .stack{flex-shrink:0}
+li .ghost, li .paint{font-weight:900;letter-spacing:.02em}
+li i{font-style:normal;color:#8BA8CC;text-align:right;flex-shrink:0;opacity:.22;transition:opacity .4s}
+li i.on{opacity:.55}
+li .brush{width:34px;height:20px} li .brush::before{width:15px;height:15px} li .brush::after{width:22px;height:5px;left:11px;top:7px}
 .contact-box{border:1px dashed rgba(180,220,255,.2);background:rgba(0,0,0,.25)}
 .contact-box .name{font-weight:900} .contact-box .data{opacity:.6;font-family:monospace;word-break:break-all}
 .wa{display:block;text-align:center;background:#25FF88;color:#000;text-decoration:none;font-weight:900}
 .foot{display:flex;justify-content:space-between;opacity:.25;font-family:monospace}
-
-/* MÓVIL PRIMERO - SIN SCROLL - CONTACTO ABAJO */
 @media(max-width:899px){
   body{padding:12px;align-items:flex-start;min-height:100dvh}
   .card{max-width:400px;padding:18px}
+  .rivet{width:9px;height:9px} .rivet::after{width:2px;height:2px;left:2px;top:2px}
+  .r-tl{left:7px;top:7px} .r-tr{right:7px;top:7px} .r-bl{left:7px;bottom:7px} .r-br{right:7px;bottom:7px}
   .layout{display:flex;flex-direction:column}
-  .gl-wrap{width:56px;height:56px;margin:0 auto 12px auto}
-  .gl{width:56px;height:56px;font-size:18px}
-  h1{text-align:center} h1 .sol{font-size:13px;margin-bottom:4px} h1 .para,h1 .inm{font-size:32px} h1 i{width:8px;height:8px;margin-left:6px}
+  .gl-wrap{width:56px;height:56px;margin:0 auto 12px auto} .gl{width:56px;height:56px;font-size:18px}
+  h1{text-align:center} h1 .sol{font-size:13px;margin-bottom:4px} h1 .ghost,h1 .paint{font-size:32px}
   .top{order:1} .services{order:2;margin-top:18px} .bottom{order:3;margin-top:18px} .foot{order:4}
-  li{padding:11px 0} li b{font-size:14px} li i{font-size:10px}
+  li{padding:13px 0} li .ghost, li .paint{font-size:14px} li i{font-size:10px}
   .contact-box{padding:10px} .contact-box .name{font-size:11px} .contact-box .data{font-size:9px;margin-top:3px}
-  .wa{padding:12px;font-size:13px;margin-top:10px}
-  .foot{margin-top:14px;font-size:7px}
+  .wa{padding:12px;font-size:13px;margin-top:10px} .foot{margin-top:14px;font-size:7px}
 }
-
-/* MONITOR - ESCALADO COMO IMAGEN - 84vw */
 @media(min-width:900px){
   body{padding:2vw}
   .card{width:84vw;max-width:1360px;padding:2.5vw 3vw}
   .layout{display:grid;grid-template-columns:30vw 1fr;gap:2vw 4vw;align-items:start}
-  .top{grid-column:1;grid-row:1}
-  .gl-wrap{width:5vw;height:5vw;min-width:64px;min-height:64px;margin:0 0 1.2vw 0}
-  .gl{width:100%;height:100%;font-size:1.4vw}
-  h1{text-align:left} h1 .sol{font-size:1.05vw;margin-bottom:.4vw} h1 .para{font-size:3.1vw} h1 .inm{font-size:3.1vw} h1 i{width:.7vw;height:.7vw;margin-left:.5vw}
-  .bottom{grid-column:1;grid-row:2;margin-top:0}
-  .contact-box{padding:.8vw} .contact-box .name{font-size:.78vw} .contact-box .data{font-size:.58vw;margin-top:.2vw}
+  .gl-wrap{width:5vw;height:5vw;min-width:64px;min-height:64px;margin:0 0 1.2vw 0} .gl{width:100%;height:100%;font-size:1.4vw}
+  h1{text-align:left} h1 .sol{font-size:1.05vw;margin-bottom:.4vw} h1 .ghost,h1 .paint{font-size:3.1vw}
+  .bottom{grid-column:1;grid-row:2} .services{grid-column:2;grid-row:1 / span 2}
+  li{padding:1vw 0} li .ghost, li .paint{font-size:.95vw} li i{font-size:.65vw}
+  .contact-box{padding:.9vw} .contact-box .name{font-size:.82vw} .contact-box .data{font-size:.82vw;margin-top:.4vw;opacity:.8;letter-spacing:.02em}
   .wa{padding:.9vw;font-size:.85vw;margin-top:.7vw}
-  .services{grid-column:2;grid-row:1 / span 2;margin-top:0}
-  li{padding:.95vw 0} li b{font-size:.95vw} li i{font-size:.65vw}
   .foot{grid-column:1 / -1;margin-top:2vw;font-size:.55vw;padding-top:1vw;border-top:1px solid rgba(180,220,255,.08)}
 }
 </style>
 </head>
 <body>
 <div class="card">
+  <span class="rivet r-tl"></span><span class="rivet r-tr"></span><span class="rivet r-bl"></span><span class="rivet r-br"></span>
   <div class="layout">
     <div class="top">
       <div class="gl-wrap"><div class="gl">GL</div></div>
-      <h1><span class="sol">SOLUCIONES</span><span class="para">PARA</span><span class="inm">INMUEBLES.<i></i></span></h1>
+      <h1>
+        <span class="sol">SOLUCIONES</span>
+        <span class="wrap"><span class="stack"><span class="ghost">PARA</span><span class="paint" id="t1">PARA</span></span><span class="brush" id="b1"></span></span>
+        <span class="wrap"><span class="stack"><span class="ghost">INMUEBLES.</span><span class="paint" id="t2">INMUEBLES.</span></span><span class="brush" id="b2"></span></span>
+      </h1>
     </div>
     <div class="services">
-      <ul>
-        <li><b>Plomería</b><i>Llaves y fugas</i></li>
-        <li><b>Electricidad</b><i>Cortos y luminarias</i></li>
-        <li><b>Pintura</b><i>Interior y exterior</i></li>
-        <li><b>Albañilería</b><i>Remates finos</i></li>
-        <li><b>Construcción</b><i>Obra menor</i></li>
-        <li><b>Pisos</b><i>Colocación y pulido</i></li>
-        <li><b>Cisternas</b><i>Mantenimiento</i></li>
+      <ul id="services">
+        <li><span class="stack"><span class="ghost">PLOMERÍA</span><span class="paint">PLOMERÍA</span></span><i>Llaves y fugas</i><span class="brush"></span></li>
+        <li><span class="stack"><span class="ghost">ELECTRICIDAD</span><span class="paint">ELECTRICIDAD</span></span><i>Cortos y luminarias</i><span class="brush"></span></li>
+        <li><span class="stack"><span class="ghost">PINTURA</span><span class="paint">PINTURA</span></span><i>Interior y exterior</i><span class="brush"></span></li>
+        <li><span class="stack"><span class="ghost">ALBAÑILERÍA</span><span class="paint">ALBAÑILERÍA</span></span><i>Remates finos</i><span class="brush"></span></li>
+        <li><span class="stack"><span class="ghost">CONSTRUCCIÓN</span><span class="paint">CONSTRUCCIÓN</span></span><i>Obra menor</i><span class="brush"></span></li>
+        <li><span class="stack"><span class="ghost">PISOS</span><span class="paint">PISOS</span></span><i>Colocación y pulido</i><span class="brush"></span></li>
+        <li><span class="stack"><span class="ghost">CISTERNAS</span><span class="paint">CISTERNAS</span></span><i>Mantenimiento</i><span class="brush"></span></li>
       </ul>
     </div>
     <div class="bottom">
-      <div class="contact-box"><div class="name">MAESTRO GERARDO LEMUS</div><div class="data">gerardo.hogar@outlook.com · 55 4885 1150 · Zona sur CDMX</div></div>
+      <div class="contact-box"><div class="name">MAESTRO GERARDO LEMUS</div><div class="data">gerardo.hogar@outlook.com · Zona sur CDMX</div></div>
       <a class="wa" href="https://wa.me/5215548851150">WhatsApp 55 4885 1150 →</a>
     </div>
     <div class="foot"><span>Blueprint — Residencial + Comercial</span><span>Sur CDMX</span></div>
   </div>
 </div>
+<script>
+function run(){
+  const s=getComputedStyle(document.documentElement);
+  const gap=parseInt(s.getPropertyValue('--gap'));
+  const speed=parseFloat(s.getPropertyValue('--speed'))*1000;
+  const t1=document.getElementById('t1'), b1=document.getElementById('b1'), t2=document.getElementById('t2'), b2=document.getElementById('b2');
+  const items=document.querySelectorAll('#services li');
+  setTimeout(()=>{t1.classList.add('active'); b1.classList.add('show');},200);
+  setTimeout(()=>{t2.classList.add('active'); b2.classList.add('show');},200+speed+300);
+  items.forEach((li,i)=>{
+    setTimeout(()=>{
+      li.querySelector('.paint').classList.add('active');
+      li.querySelector('.brush').classList.add('show');
+      setTimeout(()=>{li.querySelector('i').classList.add('on');}, speed*0.6);
+    }, 200+speed*2+600+i*(speed*0.6+gap*0.5));
+  });
+}
+window.addEventListener('load', run);
+</script>
 </body>
 </html>
