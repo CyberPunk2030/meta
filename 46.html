@@ -12,45 +12,56 @@ body{
   background-image:linear-gradient(rgba(120,180,255,.07) 1px, transparent 1px),linear-gradient(90deg, rgba(120,180,255,.07) 1px, transparent 1px);
   background-size:80px 80px;
 }
-.card{width:100%;border:1px solid rgba(180,220,255,.12);padding:24px;background:#101E38}
+.card{width:100%;max-width:420px;border:1px solid rgba(180,220,255,.15);padding:20px;background:#101E38}
 .gl-wrap{width:64px;height:64px;position:relative;margin:0 auto 14px auto}
 .gl{width:64px;height:64px;border-radius:50%;background:#000;border:2px solid #1a1a1a;display:grid;place-items:center;font-size:20px;font-weight:900;color:#fff;z-index:2;position:relative}
 .gl-wrap::before,.gl-wrap::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:2px solid transparent;border-top-color:#00ff88;animation:spin 1s linear infinite}
 .gl-wrap::after{inset:-9px;border-top-color:rgba(0,255,136,.4);animation-duration:1.6s}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-/* TÍTULO CORREGIDO - NO TODO BLANCO */
-h1{line-height:.88;text-transform:uppercase;overflow-wrap:break-word}
+h1{line-height:.88;text-transform:uppercase}
 h1 .sol{font-weight:300;font-size:18px;letter-spacing:.12em;color:#8BA8CC;display:block;margin-bottom:6px}
-h1 .para{font-weight:900;display:block;color:#7DD3FC;filter:drop-shadow(0 0 12px rgba(125,211,252,.15))}
+h1 .para{font-weight:900;display:block;color:#7DD3FC}
 h1 .inm{font-weight:900;display:block;color:#7DD3FC}
-h1 i{display:inline-block;width:10px;height:10px;background:#FFD60A;border-radius:50%;margin-left:8px;box-shadow:0 0 10px #FFD60A;vertical-align:super}
-
+h1 i{display:inline-block;width:10px;height:10px;background:#FFD60A;border-radius:50%;margin-left:8px;box-shadow:0 0 10px #FFD60A}
 ul{list-style:none;border-top:1px dashed rgba(180,220,255,.15)}
 li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px dashed rgba(180,220,255,.12)}
-li b{font-size:16px;text-transform:uppercase;color:#E8F0FF;letter-spacing:.02em} 
-li i{font-style:normal;font-size:11px;opacity:.6;color:#8BA8CC;text-align:right;flex-shrink:0}
+li b{font-size:16px;text-transform:uppercase} li i{font-style:normal;font-size:11px;opacity:.5;color:#8BA8CC;text-align:right;flex-shrink:0}
 .contact-box{padding:12px;border:1px dashed rgba(180,220,255,.2);background:rgba(0,0,0,.25)}
 .contact-box .name{font-weight:900;font-size:12px} .contact-box .data{font-size:10px;opacity:.6;margin-top:4px;font-family:monospace;word-break:break-all}
 .wa{display:block;text-align:center;background:#25FF88;color:#000;padding:14px;text-decoration:none;font-weight:900;font-size:14px;margin-top:12px}
-.foot{margin-top:20px;display:flex;justify-content:space-between;font-size:8px;opacity:.25;font-family:monospace;letter-spacing:.05em}
+.foot{margin-top:20px;display:flex;justify-content:space-between;font-size:8px;opacity:.25;font-family:monospace}
 
 .layout{display:flex;flex-direction:column}
 .top{order:1} .services{order:2;margin-top:20px} .bottom{order:3;margin-top:20px} .foot{order:4}
+h1 .para,h1 .inm{font-size:32px}
 
-/* BOOTSTRAP CONTAINER BIEN HECHO */
-@media(min-width:768px){
-  .card{max-width:720px;padding:28px}
-  .layout{display:grid;grid-template-columns:360px 1fr;gap:32px;align-items:start}
-  .top{grid-column:1;grid-row:1} .gl-wrap{margin:0 0 18px 0}
-  h1{text-align:left} h1 .sol{font-size:18px} h1 .para{font-size:42px} h1 .inm{font-size:42px}
+/* SOLUCIÓN: ESCALAR COMO IMAGEN */
+@media(min-width:900px){
+  body{padding:2vw}
+  .card{
+    max-width:none;
+    width:84vw; /* <- aquí está el truco: como redimensionar imagen, 84% del monitor */
+    padding:2.5vw 3vw;
+  }
+  .layout{
+    display:grid;
+    grid-template-columns:30vw 1fr;
+    gap:2vw 4vw;
+    align-items:start;
+  }
+  .top{grid-column:1;grid-row:1}
+  .gl-wrap{width:5vw;height:5vw;min-width:64px;min-height:64px;margin:0 0 1.2vw 0}
+  .gl{width:100%;height:100%;font-size:1.5vw}
+  h1 .sol{font-size:1.1vw}
+  h1 .para{font-size:3.2vw}
+  h1 .inm{font-size:3.2vw}
   .bottom{grid-column:1;grid-row:2;margin-top:0}
+  .contact-box{padding:.8vw} .contact-box .name{font-size:.8vw} .contact-box .data{font-size:.6vw}
+  .wa{padding:1vw;font-size:.9vw;margin-top:.8vw}
   .services{grid-column:2;grid-row:1 / span 2;margin-top:0}
-  .foot{grid-column:1 / -1}
+  li{padding:1vw 0} li b{font-size:1vw} li i{font-size:.7vw}
+  .foot{grid-column:1 / -1;margin-top:2vw;font-size:.55vw}
 }
-@media(min-width:992px){ .card{max-width:960px;padding:36px} .layout{grid-template-columns:400px 1fr;gap:48px} h1 .para,h1 .inm{font-size:48px} }
-@media(min-width:1200px){ .card{max-width:1140px} .layout{grid-template-columns:440px 1fr} h1 .para,h1 .inm{font-size:54px} }
-@media(min-width:1400px){ .card{max-width:1260px} }
 </style>
 </head>
 <body>
