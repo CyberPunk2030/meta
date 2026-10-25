@@ -13,7 +13,7 @@ body{
   background-size:80px 80px;
 }
 .card{
-  width:100%;max-width:420px;border:1px solid rgba(180,220,255,.15);padding:20px;background:rgba(10,25,49,.96);
+  width:100%;max-width:420px;border:1px solid rgba(180,220,255,.15);padding:20px;background:rgba(10,25,49,.98);
   display:flex;flex-direction:column;
 }
 .gl-wrap{width:64px;height:64px;position:relative;margin:0 auto 14px auto}
@@ -27,45 +27,47 @@ h1 i{display:inline-block;width:10px;height:10px;background:#FFD60A;border-radiu
 ul{list-style:none;margin-top:20px;border-top:1px dashed rgba(180,220,255,.2)}
 li{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px dashed rgba(180,220,255,.18)}
 li b{font-size:16px;text-transform:uppercase} li i{font-style:normal;font-size:11px;opacity:.6;color:#A8C8FF}
-.contact-box{margin-top:18px;padding:12px;border:1px dashed rgba(180,220,255,.3);background:rgba(0,0,0,.25)}
+.contact-box{padding:12px;border:1px dashed rgba(180,220,255,.3);background:rgba(0,0,0,.25)}
 .contact-box .name{font-weight:900;font-size:12px} .contact-box .data{font-size:10px;opacity:.7;margin-top:4px;font-family:monospace;word-break:break-all}
-.wa{margin-top:14px;display:block;text-align:center;background:#25FF88;color:#000;padding:14px;text-decoration:none;font-weight:900;font-size:14px}
-.foot{margin-top:12px;display:flex;justify-content:space-between;font-size:8px;opacity:.3;font-family:monospace}
+.wa{display:block;text-align:center;background:#25FF88;color:#000;padding:14px;text-decoration:none;font-weight:900;font-size:14px;margin-top:12px}
+.foot{margin-top:16px;display:flex;justify-content:space-between;font-size:8px;opacity:.3;font-family:monospace}
 
-/* === MONITOR GRANDE - ESTO ARREGLA TU FOTO === */
+/* MÓVIL ORDEN CORRECTO - CONTACTO ABAJO */
+.top{order:1} .services{order:2;margin-top:18px} .bottom{order:3;margin-top:18px} .foot{order:4}
+
+/* MONITOR GRANDE - 100% RESPONSIVO */
 @media(min-width:900px){
-  body{padding:32px}
+  body{padding:0;align-items:stretch;justify-content:stretch}
   .card{
-    max-width:1000px;
-    padding:32px;
+    max-width:none;
+    width:100vw;
+    min-height:100vh;
+    border:none;
+    border-right:1px solid rgba(180,220,255,.1);
+    padding:40px;
     display:grid;
-    grid-template-columns:380px 1fr;
-    gap:32px;
-    align-items:start;
+    grid-template-columns:420px 1fr;
+    grid-template-rows:auto 1fr auto;
+    gap:0 60px;
+    background:rgba(10,25,49,.96);
   }
-  .left{position:sticky;top:32px}
-  .gl-wrap{margin:0 0 20px 0;width:80px;height:80px}
-  .gl{width:80px;height:80px;font-size:26px}
-  h1{text-align:left;font-size:48px}
-  h1 span{font-size:26px}
-  ul{margin-top:0}
-  li{padding:16px 0}
-  li b{font-size:18px}
-  li i{font-size:13px}
-  .contact-box{margin-top:24px}
-  .foot{grid-column:1 / -1}
+  .top{order:0;grid-column:1;grid-row:1;align-self:start}
+  .gl-wrap{margin:0 0 20px 0;width:80px;height:80px} .gl{width:80px;height:80px;font-size:26px}
+  h1{text-align:left;font-size:52px} h1 span{font-size:26px}
+  .services{order:0;grid-column:2;grid-row:1 / span 2;margin-top:0}
+  li{padding:18px 0} li b{font-size:19px}
+  .bottom{order:0;grid-column:1;grid-row:2;align-self:end}
+  .foot{order:0;grid-column:1 / -1;grid-row:3;margin-top:40px;padding-top:16px;border-top:1px solid rgba(180,220,255,.1)}
 }
 </style>
 </head>
 <body>
 <div class="card">
-  <div class="left">
+  <div class="top">
     <div class="gl-wrap"><div class="gl">GL</div></div>
     <h1><span>Soluciones</span>Para Inmuebles<i></i></h1>
-    <div class="contact-box"><div class="name">MAESTRO GERARDO LEMUS</div><div class="data">gerardo.hogar@outlook.com · 55 4885 1150 · Zona sur CDMX</div></div>
-    <a class="wa" href="https://wa.me/5215548851150">WhatsApp 55 4885 1150 →</a>
   </div>
-  <div class="right">
+  <div class="services">
     <ul>
       <li><b>Plomería</b><i>Llaves y fugas</i></li>
       <li><b>Electricidad</b><i>Cortos y luminarias</i></li>
@@ -75,6 +77,10 @@ li b{font-size:16px;text-transform:uppercase} li i{font-style:normal;font-size:1
       <li><b>Pisos</b><i>Colocación y pulido</i></li>
       <li><b>Cisternas</b><i>Mantenimiento</i></li>
     </ul>
+  </div>
+  <div class="bottom">
+    <div class="contact-box"><div class="name">MAESTRO GERARDO LEMUS</div><div class="data">gerardo.hogar@outlook.com · 55 4885 1150 · Zona sur CDMX</div></div>
+    <a class="wa" href="https://wa.me/5215548851150">WhatsApp 55 4885 1150 →</a>
   </div>
   <div class="foot"><span>Blueprint — Residencial + Comercial</span><span>Sur CDMX</span></div>
 </div>
