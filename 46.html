@@ -3,99 +3,81 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Gerardo Lemus - Blueprint</title>
+<title>GL - Final</title>
 <style>
-  :root{--bg:#1a2332;--grid:rgba(255,255,255,.06);--blue:#6bb8ff;--white:#eef2f7;--muted:rgba(238,242,247,.55);}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);font-family: ui-monospace, SFMono-Regular, Menlo, monospace;overflow-x:hidden}
-  .page{position:relative;min-height:100vh;background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);background-size:40px 40px;padding:24px}
-  .rivet{position:absolute;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #fff, #8a9bb0 60%, #2a3545);box-shadow:inset 0 1px 2px #fff, 0 2px 6px rgba(0,0,0,.6)}
-  .rivet.tl{top:14px;left:14px}.rivet.tr{top:14px;right:14px}.rivet.bl{bottom:14px;left:14px}.rivet.br{bottom:14px;right:14px}
-  
-  .center-block{max-width:1100px;margin:0 auto;padding-top:48px}
-  .brand-row{display:flex;align-items:center;gap:16px;margin-bottom:28px}
-  .gl-wrap{width:52px;height:52px;position:relative;flex-shrink:0}
-  .gl-wrap .ring{position:absolute;inset:0;border:2px solid var(--blue);border-radius:50%;border-top-color:transparent;animation:spin 1.2s linear infinite}
-  .gl-wrap .gl{position:absolute;inset:0;display:grid;place-items:center;color:var(--blue);font-weight:800;font-size:22px}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .brand-text{color:var(--muted);font-size:12px;letter-spacing:.22em}
-
-  .headline{line-height:.9;margin-bottom:18px}
-  .headline .line{display:block;overflow:hidden}
-  .headline .line span{display:inline-block;transform:translateY(100%);animation:paint .6s forwards}
-  .headline .line:nth-child(1) span{animation-delay:.2s;color:var(--muted);font-size:2.2vw;letter-spacing:.3em}
-  .headline .line:nth-child(2) span{animation-delay:.5s;color:var(--blue);font-size:4.4vw;font-weight:800;letter-spacing:-.02em}
-  @keyframes paint{to{transform:translateY(0)}}
-
-  .plumber-row{display:flex;justify-content:space-between;gap:24px;margin-top:32px}
-  .services{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:18px 48px;flex:1}
-  .svc{line-height:1.1}
-  .svc-name{position:relative;display:grid;font-size:1.45vw;font-weight:600;color:var(--white);letter-spacing:.02em}
-  .svc-name .ghost,.svc-name .real{grid-area:1/1}
-  .svc-name .ghost{visibility:hidden}
-  .svc-name .real{color:transparent;background:linear-gradient(90deg, var(--white) 0 100%);background-size:0% 100%;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;animation:fill .7s forwards}
-  .svc:nth-child(1) .real{animation-delay:.8s}.svc:nth-child(2) .real{animation-delay:.95s}.svc:nth-child(3) .real{animation-delay:1.1s}.svc:nth-child(4) .real{animation-delay:1.25s}.svc:nth-child(5) .real{animation-delay:1.4s}.svc:nth-child(6) .real{animation-delay:1.55s}.svc:nth-child(7) .real{animation-delay:1.7s}
-  @keyframes fill{to{background-size:100% 100%}}
-  .svc-sub{font-size:.9vw;color:var(--muted);margin-top:4px;letter-spacing:.04em;text-transform:lowercase}
-
-  .cta{width:300px;flex-shrink:0}
-  .cta-box{border:1px solid rgba(107,184,255,.3);padding:18px}
-  .cta-box .k{color:var(--muted);font-size:10px;letter-spacing:.2em;margin-bottom:10px}
-  .cta-box .btn{display:block;width:100%;text-align:center;padding:14px;background:var(--blue);color:#0f1a28;font-weight:800;text-decoration:none;font-size:14px}
-  .cta-note{margin-top:12px;color:var(--muted);font-size:11px;line-height:1.4}
-
-  /* TABLET: 641 - 1024 */
-  @media (max-width:1024px) and (min-width:641px){
-    .headline .line:nth-child(1) span{font-size:3.2vw}
-    .headline .line:nth-child(2) span{font-size:6.5vw}
-    .plumber-row{flex-direction:column}
-    .services{grid-template-columns:repeat(2, 1fr)}
-    .svc-name{font-size:2.6vw}
-    .svc-sub{font-size:1.6vw}
-    .cta{width:100%;max-width:420px}
-  }
-  /* MOBILE: 0 - 640 */
-  @media (max-width:640px){
-    .page{padding:16px}
-    .headline .line:nth-child(1) span{font-size:4.5vw}
-    .headline .line:nth-child(2) span{font-size:10vw}
-    .plumber-row{flex-direction:column}
-    .services{grid-template-columns:1fr;gap:14px}
-    .svc-name{font-size:6vw}
-    .svc-sub{font-size:3.8vw}
-    .cta{width:100%}
-  }
+ :root{--bg:#1a2332;--grid:rgba(255,255,255,.06);--blue:#6bb8ff;--white:#eef2f7;--muted:rgba(238,242,247,.55);}
+ *{box-sizing:border-box;margin:0;padding:0}
+ body{background:var(--bg);font-family:ui-monospace,monospace;overflow-x:hidden}
+ .page{position:relative;min-height:100vh;background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);background-size:40px 40px;padding:24px}
+ .rivet{position:absolute;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #fff, #8a9bb0 60%, #2a3545);box-shadow:inset 0 1px 2px #fff, 0 2px 6px rgba(0,0,0,.6)}
+ .rivet.tl{top:14px;left:14px}.rivet.tr{top:14px;right:14px}.rivet.bl{bottom:14px;left:14px}.rivet.br{bottom:14px;right:14px}
+ .center-block{max-width:1100px;margin:0 auto;padding-top:48px}
+ .brand-row{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+ .gl-wrap{width:52px;height:52px;position:relative;flex-shrink:0}
+ .gl-wrap .ring{position:absolute;inset:0;border:2px solid var(--blue);border-radius:50%;border-top-color:transparent;animation:spin 1.2s linear infinite}
+ .gl-wrap .gl{position:absolute;inset:0;display:grid;place-items:center;color:var(--blue);font-weight:800;font-size:22px}
+ @keyframes spin{to{transform:rotate(360deg)}}
+ .brand-text{color:var(--muted);font-size:12px;letter-spacing:.22em}
+ .headline{line-height:.9;margin-bottom:18px}
+ .headline .line{display:block;overflow:hidden;position:relative}
+ .headline .line span{display:inline-block;transform:translateY(100%);animation:paint .6s forwards}
+ .headline .line:nth-child(1) span{animation-delay:.2s;color:var(--muted);font-size:2.2vw;letter-spacing:.3em}
+ .headline .line:nth-child(2) span{animation-delay:.5s;color:var(--blue);font-size:4.4vw;font-weight:800}
+ @keyframes paint{to{transform:translateY(0)}}
+ .plumber-row{display:flex;justify-content:space-between;gap:24px;margin-top:32px}
+ .services{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:18px 48px;flex:1}
+ .svc{line-height:1.1;position:relative}
+ .svc-name{position:relative;display:grid;font-size:1.45vw;font-weight:600;color:var(--white)}
+ .svc-name .ghost,.svc-name .real{grid-area:1/1}
+ .svc-name .ghost{visibility:hidden}
+ .svc-name .real{position:relative;overflow:hidden;color:transparent}
+ .svc-name .real::after{content:attr(data-text);position:absolute;left:0;top:0;color:var(--white);width:0;overflow:hidden;white-space:nowrap;border-right:3px solid var(--blue);animation:brush 0.8s forwards}
+ .svc:nth-child(1) .real::after{animation-delay:.8s}.svc:nth-child(2) .real::after{animation-delay:1s}.svc:nth-child(3) .real::after{animation-delay:1.2s}.svc:nth-child(4) .real::after{animation-delay:1.4s}.svc:nth-child(5) .real::after{animation-delay:1.6s}.svc:nth-child(6) .real::after{animation-delay:1.8s}.svc:nth-child(7) .real::after{animation-delay:2s}
+ @keyframes brush{0%{width:0} 90%{border-right-color:var(--blue)} 100%{width:100%;border-right-color:transparent}}
+ .svc-sub{font-size:.9vw;color:var(--muted);margin-top:4px}
+ .cta{width:300px;flex-shrink:0}
+ .cta-box{border:1px solid rgba(107,184,255,.3);padding:18px}
+ .cta-box .k{color:var(--muted);font-size:10px;letter-spacing:.2em;margin-bottom:10px}
+ .cta-box .btn{display:block;width:100%;text-align:center;padding:14px;background:var(--blue);color:#0f1a28;font-weight:800;text-decoration:none;font-size:14px}
+ .cta-note{margin-top:12px;color:var(--muted);font-size:11px}
+ @media (max-width:1024px) and (min-width:641px){
+   .headline .line:nth-child(1) span{font-size:3.2vw}
+   .headline .line:nth-child(2) span{font-size:6.5vw}
+   .plumber-row{flex-direction:column}
+   .services{grid-template-columns:repeat(2,1fr)}
+   .svc-name{font-size:2.6vw}
+   .svc-sub{font-size:1.6vw}
+   .cta{width:100%;max-width:420px}
+ }
+ @media (max-width:640px){
+   .page{padding:16px}
+   .headline .line:nth-child(1) span{font-size:4.5vw}
+   .headline .line:nth-child(2) span{font-size:10vw}
+   .plumber-row{flex-direction:column}
+   .services{grid-template-columns:1fr}
+   .svc-name{font-size:6vw}
+   .svc-sub{font-size:3.8vw}
+   .cta{width:100%}
+ }
 </style>
 </head>
 <body>
 <div class="page">
   <div class="rivet tl"></div><div class="rivet tr"></div><div class="rivet bl"></div><div class="rivet br"></div>
   <div class="center-block">
-    <div class="brand-row">
-      <div class="gl-wrap"><div class="ring"></div><div class="gl">GL</div></div>
-      <div class="brand-text">GERARDO LEMUS — SUR CDMX · RESIDENCIAL + COMERCIAL · ZAPATA · COYOACÁN · SAN ÁNGEL · AJUSCO</div>
-    </div>
-    <div class="headline">
-      <span class="line"><span>SOLUCIONES</span></span>
-      <span class="line"><span>PARA INMUEBLES.</span></span>
-    </div>
+    <div class="brand-row"><div class="gl-wrap"><div class="ring"></div><div class="gl">GL</div></div><div class="brand-text">GERARDO LEMUS — SUR CDMX · RESIDENCIAL + COMERCIAL</div></div>
+    <div class="headline"><span class="line"><span>SOLUCIONES</span></span><span class="line"><span>PARA INMUEBLES.</span></span></div>
     <div class="plumber-row">
       <div class="services">
-        <div class="svc"><div class="svc-name"><span class="ghost">Plomería</span><span class="real">Plomería</span></div><div class="svc-sub">llaves y fugas</div></div>
-        <div class="svc"><div class="svc-name"><span class="ghost">Electricidad</span><span class="real">Electricidad</span></div><div class="svc-sub">cortos y luminarias</div></div>
-        <div class="svc"><div class="svc-name"><span class="ghost">Pintura</span><span class="real">Pintura</span></div><div class="svc-sub">interior y exterior</div></div>
-        <div class="svc"><div class="svc-name"><span class="ghost">Carpintería</span><span class="real">Carpintería</span></div><div class="svc-sub">puertas y closets</div></div>
-        <div class="svc"><div class="svc-name"><span class="ghost">Herrería</span><span class="real">Herrería</span></div><div class="svc-sub">portones y rejas</div></div>
-        <div class="svc"><div class="svc-name"><span class="ghost">Impermeabilización</span><span class="real">Impermeabilización</span></div><div class="svc-sub">azoteas y cisternas</div></div>
-        <div class="svc"><div class="svc-name"><span class="ghost">Mantenimiento general</span><span class="real">Mantenimiento general</span></div><div class="svc-sub">preventivo y correctivo</div></div>
+        <div class="svc"><div class="svc-name"><span class="ghost">Plomería</span><span class="real" data-text="Plomería">Plomería</span></div><div class="svc-sub">llaves y fugas</div></div>
+        <div class="svc"><div class="svc-name"><span class="ghost">Electricidad</span><span class="real" data-text="Electricidad">Electricidad</span></div><div class="svc-sub">cortos y luminarias</div></div>
+        <div class="svc"><div class="svc-name"><span class="ghost">Pintura</span><span class="real" data-text="Pintura">Pintura</span></div><div class="svc-sub">interior y exterior</div></div>
+        <div class="svc"><div class="svc-name"><span class="ghost">Carpintería</span><span class="real" data-text="Carpintería">Carpintería</span></div><div class="svc-sub">puertas y closets</div></div>
+        <div class="svc"><div class="svc-name"><span class="ghost">Herrería</span><span class="real" data-text="Herrería">Herrería</span></div><div class="svc-sub">portones y rejas</div></div>
+        <div class="svc"><div class="svc-name"><span class="ghost">Impermeabilización</span><span class="real" data-text="Impermeabilización">Impermeabilización</span></div><div class="svc-sub">azoteas y cisternas</div></div>
+        <div class="svc"><div class="svc-name"><span class="ghost">Mantenimiento general</span><span class="real" data-text="Mantenimiento general">Mantenimiento general</span></div><div class="svc-sub">preventivo y correctivo</div></div>
       </div>
-      <div class="cta">
-        <div class="cta-box">
-          <div class="k">CONTACTO DIRECTO</div>
-          <a class="btn" href="https://wa.me/525548851150">WHATSAPP 55 4885 1150</a>
-        </div>
-        <div class="cta-note">gerardolemusproyectos@gmail.com<br>Agenda por WhatsApp. Facturación disponible.</div>
-      </div>
+      <div class="cta"><div class="cta-box"><div class="k">CONTACTO DIRECTO</div><a class="btn" href="https://wa.me/525548851150">WHATSAPP 55 4885 1150</a></div><div class="cta-note">gerardolemusproyectos@gmail.com<br>Agenda por WhatsApp. Facturación disponible.</div></div>
     </div>
   </div>
 </div>
