@@ -1,129 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Maestro Gerardo Lemus - Fix Final</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gerardo Lemus - Blueprint</title>
 <style>
-:root{ --speed: 0.85s; --gap: 700ms; }
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{overflow-x:hidden}
-body{background:#0A1931;color:#E8F0FF;font-family:Helvetica,Arial,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;background-image:linear-gradient(rgba(120,180,255,.07) 1px, transparent 1px),linear-gradient(90deg, rgba(120,180,255,.07) 1px, transparent 1px);background-size:80px 80px}
-.card{width:100%;border:1px solid rgba(180,220,255,.15);background:#101E38;overflow:hidden;position:relative}
-.rivet{position:absolute;width:12px;height:12px;background:radial-gradient(circle at 35% 35%, #E8F0FF 0%, #8BA8CC 25%, #4A5A73 60%, #1a2435 100%);border-radius:50%;box-shadow:inset -1px -1px 2px rgba(0,0,0,.8), inset 1px 1px 1px rgba(255,255,255,.6), 0 1px 3px rgba(0,0,0,.5);z-index:10}
-.rivet::after{content:'';position:absolute;width:3px;height:3px;background:rgba(255,255,255,.8);border-radius:50%;left:3px;top:2.5px}
-.r-tl{left:10px;top:10px} .r-tr{right:10px;top:10px} .r-bl{left:10px;bottom:10px} .r-br{right:10px;bottom:10px}
-.gl-wrap{position:relative}
-.gl{border-radius:50%;background:#000;border:2px solid #1a1a1a;display:grid;place-items:center;font-weight:900;color:#fff;z-index:2;position:relative}
-.gl-wrap::before,.gl-wrap::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:2px solid transparent;border-top-color:#00ff88;animation:spin 1s linear infinite}
-.gl-wrap::after{inset:-9px;border-top-color:rgba(0,255,136,.4);animation-duration:1.6s}
-@keyframes spin{to{transform:rotate(360deg)}}
-h1{line-height:.88}
-h1 .sol{font-weight:300;letter-spacing:.12em;color:#8BA8CC;display:block;text-transform:uppercase}
-h1 .wrap{position:relative;display:block;overflow:hidden}
-.stack{display:grid;place-items:start}
-.stack .ghost,.stack .paint{grid-area:1/1;line-height:1;letter-spacing:0;font-family:inherit;white-space:nowrap}
-.ghost{color:rgba(232,240,255,.14);display:block}
-.paint{display:block;clip-path:inset(0 100% 0 0)}
-.paint.active{animation:reveal var(--speed) cubic-bezier(.77,0,.175,1) forwards}
-@keyframes reveal{to{clip-path:inset(0 0% 0 0)}}
-h1 .ghost,h1 .paint{font-weight:900;text-transform:uppercase}
-h1 .paint{color:#7DD3FC}
-li .ghost,li .paint{font-weight:600;text-transform:none}
-li .paint{color:#F2F7FF}
-.brush{position:absolute;top:50%;left:0;width:44px;height:28px;transform:translate(-100%, -50%) rotate(-15deg);z-index:3;pointer-events:none;opacity:0}
-.brush.show{opacity:1;animation:brushMove var(--speed) cubic-bezier(.77,0,.175,1) forwards}
-.brush::before{content:'';position:absolute;width:20px;height:20px;background:#FFD60A;border-radius:2px 8px 8px 2px;left:0;top:4px}
-.brush::after{content:'';position:absolute;width:32px;height:7px;background:linear-gradient(90deg,#8B4513,#D2691E);left:16px;top:10px;border-radius:0 4px 4px 0}
-@keyframes brushMove{0%{transform:translate(-100%, -50%) rotate(-15deg)}85%{transform:translate(calc(100% + 80vw), -50%) rotate(-5deg)}100%{opacity:0}}
-ul{list-style:none;border-top:1px dashed rgba(180,220,255,.15)}
-li{position:relative;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px dashed rgba(180,220,255,.12);overflow:hidden}
-li .stack{flex-shrink:0}
-li i{font-style:normal;color:#8BA8CC;text-align:right;flex-shrink:0;opacity:.22;transition:opacity .4s}
-li i.on{opacity:.55}
-li .brush{width:34px;height:20px} li .brush::before{width:15px;height:15px} li .brush::after{width:22px;height:5px;left:11px;top:7px}
-.contact-box{border:1px dashed rgba(180,220,255,.2);background:rgba(0,0,0,.25)}
-.contact-box .name{font-weight:900} .contact-box .data{opacity:.8;font-family:monospace;word-break:break-all}
-.wa{display:block;text-align:center;background:#25FF88;color:#000;text-decoration:none;font-weight:900}
-.foot{display:flex;justify-content:space-between;opacity:.25;font-family:monospace}
-@media(max-width:899px){
-  body{padding:12px;align-items:flex-start;min-height:100dvh}
-  .card{max-width:400px;padding:18px}
-  .rivet{width:9px;height:9px} .rivet::after{width:2px;height:2px;left:2px;top:2px}
-  .r-tl{left:7px;top:7px} .r-tr{right:7px;top:7px} .r-bl{left:7px;bottom:7px} .r-br{right:7px;bottom:7px}
-  .layout{display:flex;flex-direction:column}
-  .gl-wrap{width:56px;height:56px;margin:0 auto 12px auto} .gl{width:56px;height:56px;font-size:18px}
-  h1{text-align:center} h1 .sol{font-size:13px;margin-bottom:4px} h1 .ghost,h1 .paint{font-size:32px}
-  .top{order:1} .services{order:2;margin-top:18px} .bottom{order:3;margin-top:18px} .foot{order:4}
-  li{padding:13px 0} li .ghost, li .paint{font-size:14px} li i{font-size:10px}
-  .contact-box{padding:10px} .contact-box .name{font-size:11px} .contact-box .data{font-size:9px;margin-top:3px}
-  .wa{padding:12px;font-size:13px;margin-top:10px} .foot{margin-top:14px;font-size:7px}
-}
-@media(min-width:900px){
-  body{padding:2vw}
-  .card{width:84vw;max-width:1360px;padding:2.5vw 3vw}
-  .layout{display:grid;grid-template-columns:32vw 1fr;gap:2vw 5vw;align-items:start}
-  .gl-wrap{width:5vw;height:5vw;min-width:64px;min-height:64px;margin:0 0 1.2vw 0} .gl{width:100%;height:100%;font-size:1.4vw}
-  h1{text-align:left} h1 .sol{font-size:1.15vw;margin-bottom:.5vw} 
-  h1 .ghost,h1 .paint{font-size:4.4vw; line-height:.9}
-  .bottom{grid-column:1;grid-row:2} .services{grid-column:2;grid-row:1 / span 2}
-  li{padding:1.15vw 0}
-  li .ghost, li .paint{font-size:1.45vw}
-  li i{font-size:.82vw; font-weight:400}
-  .contact-box{padding:.9vw} .contact-box .name{font-size:.82vw} .contact-box .data{font-size:.82vw;margin-top:.4vw}
-  .wa{padding:.9vw;font-size:.85vw;margin-top:.7vw}
-  .foot{grid-column:1 / -1;margin-top:2vw;font-size:.55vw;padding-top:1vw;border-top:1px solid rgba(180,220,255,.08)}
-}
+  :root{--bg:#1a2332;--grid:rgba(255,255,255,.06);--blue:#6bb8ff;--white:#eef2f7;--muted:rgba(238,242,247,.55);}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);font-family: ui-monospace, SFMono-Regular, Menlo, monospace;overflow-x:hidden}
+  .page{position:relative;min-height:100vh;background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);background-size:40px 40px;padding:24px}
+  .rivet{position:absolute;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #fff, #8a9bb0 60%, #2a3545);box-shadow:inset 0 1px 2px #fff, 0 2px 6px rgba(0,0,0,.6)}
+  .rivet.tl{top:14px;left:14px}.rivet.tr{top:14px;right:14px}.rivet.bl{bottom:14px;left:14px}.rivet.br{bottom:14px;right:14px}
+  
+  .center-block{max-width:1100px;margin:0 auto;padding-top:48px}
+  .brand-row{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+  .gl-wrap{width:52px;height:52px;position:relative;flex-shrink:0}
+  .gl-wrap .ring{position:absolute;inset:0;border:2px solid var(--blue);border-radius:50%;border-top-color:transparent;animation:spin 1.2s linear infinite}
+  .gl-wrap .gl{position:absolute;inset:0;display:grid;place-items:center;color:var(--blue);font-weight:800;font-size:22px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .brand-text{color:var(--muted);font-size:12px;letter-spacing:.22em}
+
+  .headline{line-height:.9;margin-bottom:18px}
+  .headline .line{display:block;overflow:hidden}
+  .headline .line span{display:inline-block;transform:translateY(100%);animation:paint .6s forwards}
+  .headline .line:nth-child(1) span{animation-delay:.2s;color:var(--muted);font-size:2.2vw;letter-spacing:.3em}
+  .headline .line:nth-child(2) span{animation-delay:.5s;color:var(--blue);font-size:4.4vw;font-weight:800;letter-spacing:-.02em}
+  @keyframes paint{to{transform:translateY(0)}}
+
+  .plumber-row{display:flex;justify-content:space-between;gap:24px;margin-top:32px}
+  .services{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:18px 48px;flex:1}
+  .svc{line-height:1.1}
+  .svc-name{position:relative;display:grid;font-size:1.45vw;font-weight:600;color:var(--white);letter-spacing:.02em}
+  .svc-name .ghost,.svc-name .real{grid-area:1/1}
+  .svc-name .ghost{visibility:hidden}
+  .svc-name .real{color:transparent;background:linear-gradient(90deg, var(--white) 0 100%);background-size:0% 100%;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;animation:fill .7s forwards}
+  .svc:nth-child(1) .real{animation-delay:.8s}.svc:nth-child(2) .real{animation-delay:.95s}.svc:nth-child(3) .real{animation-delay:1.1s}.svc:nth-child(4) .real{animation-delay:1.25s}.svc:nth-child(5) .real{animation-delay:1.4s}.svc:nth-child(6) .real{animation-delay:1.55s}.svc:nth-child(7) .real{animation-delay:1.7s}
+  @keyframes fill{to{background-size:100% 100%}}
+  .svc-sub{font-size:.9vw;color:var(--muted);margin-top:4px;letter-spacing:.04em;text-transform:lowercase}
+
+  .cta{width:300px;flex-shrink:0}
+  .cta-box{border:1px solid rgba(107,184,255,.3);padding:18px}
+  .cta-box .k{color:var(--muted);font-size:10px;letter-spacing:.2em;margin-bottom:10px}
+  .cta-box .btn{display:block;width:100%;text-align:center;padding:14px;background:var(--blue);color:#0f1a28;font-weight:800;text-decoration:none;font-size:14px}
+  .cta-note{margin-top:12px;color:var(--muted);font-size:11px;line-height:1.4}
+
+  /* TABLET: 641 - 1024 */
+  @media (max-width:1024px) and (min-width:641px){
+    .headline .line:nth-child(1) span{font-size:3.2vw}
+    .headline .line:nth-child(2) span{font-size:6.5vw}
+    .plumber-row{flex-direction:column}
+    .services{grid-template-columns:repeat(2, 1fr)}
+    .svc-name{font-size:2.6vw}
+    .svc-sub{font-size:1.6vw}
+    .cta{width:100%;max-width:420px}
+  }
+  /* MOBILE: 0 - 640 */
+  @media (max-width:640px){
+    .page{padding:16px}
+    .headline .line:nth-child(1) span{font-size:4.5vw}
+    .headline .line:nth-child(2) span{font-size:10vw}
+    .plumber-row{flex-direction:column}
+    .services{grid-template-columns:1fr;gap:14px}
+    .svc-name{font-size:6vw}
+    .svc-sub{font-size:3.8vw}
+    .cta{width:100%}
+  }
 </style>
 </head>
 <body>
-<div class="card">
-  <span class="rivet r-tl"></span><span class="rivet r-tr"></span><span class="rivet r-bl"></span><span class="rivet r-br"></span>
-  <div class="layout">
-    <div class="top">
-      <div class="gl-wrap"><div class="gl">GL</div></div>
-      <h1>
-        <span class="sol">SOLUCIONES</span>
-        <span class="wrap"><span class="stack"><span class="ghost">PARA</span><span class="paint" id="t1">PARA</span></span><span class="brush" id="b1"></span></span>
-        <span class="wrap"><span class="stack"><span class="ghost">INMUEBLES.</span><span class="paint" id="t2">INMUEBLES.</span></span><span class="brush" id="b2"></span></span>
-      </h1>
+<div class="page">
+  <div class="rivet tl"></div><div class="rivet tr"></div><div class="rivet bl"></div><div class="rivet br"></div>
+  <div class="center-block">
+    <div class="brand-row">
+      <div class="gl-wrap"><div class="ring"></div><div class="gl">GL</div></div>
+      <div class="brand-text">GERARDO LEMUS — SUR CDMX · RESIDENCIAL + COMERCIAL · ZAPATA · COYOACÁN · SAN ÁNGEL · AJUSCO</div>
     </div>
-    <div class="services">
-      <ul id="services">
-        <li><span class="stack"><span class="ghost">Plomería</span><span class="paint">Plomería</span></span><i>Llaves y fugas</i><span class="brush"></span></li>
-        <li><span class="stack"><span class="ghost">Electricidad</span><span class="paint">Electricidad</span></span><i>Cortos y luminarias</i><span class="brush"></span></li>
-        <li><span class="stack"><span class="ghost">Pintura</span><span class="paint">Pintura</span></span><i>Interior y exterior</i><span class="brush"></span></li>
-        <li><span class="stack"><span class="ghost">Albañilería</span><span class="paint">Albañilería</span></span><i>Remates finos</i><span class="brush"></span></li>
-        <li><span class="stack"><span class="ghost">Construcción</span><span class="paint">Construcción</span></span><i>Obra menor</i><span class="brush"></span></li>
-        <li><span class="stack"><span class="ghost">Pisos</span><span class="paint">Pisos</span></span><i>Colocación y pulido</i><span class="brush"></span></li>
-        <li><span class="stack"><span class="ghost">Cisternas</span><span class="paint">Cisternas</span></span><i>Mantenimiento</i><span class="brush"></span></li>
-      </ul>
+    <div class="headline">
+      <span class="line"><span>SOLUCIONES</span></span>
+      <span class="line"><span>PARA INMUEBLES.</span></span>
     </div>
-    <div class="bottom">
-      <div class="contact-box"><div class="name">MAESTRO GERARDO LEMUS</div><div class="data">gerardo.hogar@outlook.com · Zona sur CDMX</div></div>
-      <a class="wa" href="https://wa.me/5215548851150">WhatsApp 55 4885 1150 →</a>
+    <div class="plumber-row">
+      <div class="services">
+        <div class="svc"><div class="svc-name"><span class="ghost">Plomería</span><span class="real">Plomería</span></div><div class="svc-sub">llaves y fugas</div></div>
+        <div class="svc"><div class="svc-name"><span class="ghost">Electricidad</span><span class="real">Electricidad</span></div><div class="svc-sub">cortos y luminarias</div></div>
+        <div class="svc"><div class="svc-name"><span class="ghost">Pintura</span><span class="real">Pintura</span></div><div class="svc-sub">interior y exterior</div></div>
+        <div class="svc"><div class="svc-name"><span class="ghost">Carpintería</span><span class="real">Carpintería</span></div><div class="svc-sub">puertas y closets</div></div>
+        <div class="svc"><div class="svc-name"><span class="ghost">Herrería</span><span class="real">Herrería</span></div><div class="svc-sub">portones y rejas</div></div>
+        <div class="svc"><div class="svc-name"><span class="ghost">Impermeabilización</span><span class="real">Impermeabilización</span></div><div class="svc-sub">azoteas y cisternas</div></div>
+        <div class="svc"><div class="svc-name"><span class="ghost">Mantenimiento general</span><span class="real">Mantenimiento general</span></div><div class="svc-sub">preventivo y correctivo</div></div>
+      </div>
+      <div class="cta">
+        <div class="cta-box">
+          <div class="k">CONTACTO DIRECTO</div>
+          <a class="btn" href="https://wa.me/525548851150">WHATSAPP 55 4885 1150</a>
+        </div>
+        <div class="cta-note">gerardolemusproyectos@gmail.com<br>Agenda por WhatsApp. Facturación disponible.</div>
+      </div>
     </div>
-    <div class="foot"><span>Blueprint — Residencial + Comercial</span><span>Sur CDMX</span></div>
   </div>
 </div>
-<script>
-function run(){
-  const s=getComputedStyle(document.documentElement);
-  const gap=parseInt(s.getPropertyValue('--gap'));
-  const speed=parseFloat(s.getPropertyValue('--speed'))*1000;
-  const t1=document.getElementById('t1'), b1=document.getElementById('b1'), t2=document.getElementById('t2'), b2=document.getElementById('b2');
-  const items=document.querySelectorAll('#services li');
-  setTimeout(()=>{t1.classList.add('active'); b1.classList.add('show');},200);
-  setTimeout(()=>{t2.classList.add('active'); b2.classList.add('show');},200+speed+300);
-  items.forEach((li,i)=>{
-    setTimeout(()=>{
-      li.querySelector('.paint').classList.add('active');
-      li.querySelector('.brush').classList.add('show');
-      setTimeout(()=>{li.querySelector('i').classList.add('on');}, speed*0.6);
-    }, 200+speed*2+600+i*(speed*0.6+gap*0.5));
-  });
-}
-window.addEventListener('load', run);
-</script>
 </body>
 </html>
