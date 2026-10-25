@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Maestro Gerardo Lemus</title>
+<title>Maestro Gerardo Lemus - Fix Final</title>
 <style>
 :root{ --speed: 0.85s; --gap: 700ms; }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -18,14 +18,19 @@ body{background:#0A1931;color:#E8F0FF;font-family:Helvetica,Arial,sans-serif;min
 .gl-wrap::before,.gl-wrap::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:2px solid transparent;border-top-color:#00ff88;animation:spin 1s linear infinite}
 .gl-wrap::after{inset:-9px;border-top-color:rgba(0,255,136,.4);animation-duration:1.6s}
 @keyframes spin{to{transform:rotate(360deg)}}
-h1{line-height:.88;text-transform:uppercase}
-h1 .sol{font-weight:300;letter-spacing:.12em;color:#8BA8CC;display:block}
+h1{line-height:.88}
+h1 .sol{font-weight:300;letter-spacing:.12em;color:#8BA8CC;display:block;text-transform:uppercase}
 h1 .wrap{position:relative;display:block;overflow:hidden}
-.stack{position:relative;display:inline-block}
-.ghost{color:rgba(232,240,255,.18);font-weight:900;display:block;white-space:nowrap}
-.paint{position:absolute;left:0;top:0;color:#7DD3FC;font-weight:900;display:block;white-space:nowrap;clip-path:inset(0 100% 0 0)}
+.stack{display:grid;place-items:start}
+.stack .ghost,.stack .paint{grid-area:1/1;line-height:1;letter-spacing:0;font-family:inherit;white-space:nowrap}
+.ghost{color:rgba(232,240,255,.14);display:block}
+.paint{display:block;clip-path:inset(0 100% 0 0)}
 .paint.active{animation:reveal var(--speed) cubic-bezier(.77,0,.175,1) forwards}
 @keyframes reveal{to{clip-path:inset(0 0% 0 0)}}
+h1 .ghost,h1 .paint{font-weight:900;text-transform:uppercase}
+h1 .paint{color:#7DD3FC}
+li .ghost,li .paint{font-weight:600;text-transform:none}
+li .paint{color:#F2F7FF}
 .brush{position:absolute;top:50%;left:0;width:44px;height:28px;transform:translate(-100%, -50%) rotate(-15deg);z-index:3;pointer-events:none;opacity:0}
 .brush.show{opacity:1;animation:brushMove var(--speed) cubic-bezier(.77,0,.175,1) forwards}
 .brush::before{content:'';position:absolute;width:20px;height:20px;background:#FFD60A;border-radius:2px 8px 8px 2px;left:0;top:4px}
@@ -34,12 +39,11 @@ h1 .wrap{position:relative;display:block;overflow:hidden}
 ul{list-style:none;border-top:1px dashed rgba(180,220,255,.15)}
 li{position:relative;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px dashed rgba(180,220,255,.12);overflow:hidden}
 li .stack{flex-shrink:0}
-li .ghost, li .paint{font-weight:900;letter-spacing:.02em}
 li i{font-style:normal;color:#8BA8CC;text-align:right;flex-shrink:0;opacity:.22;transition:opacity .4s}
 li i.on{opacity:.55}
 li .brush{width:34px;height:20px} li .brush::before{width:15px;height:15px} li .brush::after{width:22px;height:5px;left:11px;top:7px}
 .contact-box{border:1px dashed rgba(180,220,255,.2);background:rgba(0,0,0,.25)}
-.contact-box .name{font-weight:900} .contact-box .data{opacity:.6;font-family:monospace;word-break:break-all}
+.contact-box .name{font-weight:900} .contact-box .data{opacity:.8;font-family:monospace;word-break:break-all}
 .wa{display:block;text-align:center;background:#25FF88;color:#000;text-decoration:none;font-weight:900}
 .foot{display:flex;justify-content:space-between;opacity:.25;font-family:monospace}
 @media(max-width:899px){
@@ -58,12 +62,15 @@ li .brush{width:34px;height:20px} li .brush::before{width:15px;height:15px} li .
 @media(min-width:900px){
   body{padding:2vw}
   .card{width:84vw;max-width:1360px;padding:2.5vw 3vw}
-  .layout{display:grid;grid-template-columns:30vw 1fr;gap:2vw 4vw;align-items:start}
+  .layout{display:grid;grid-template-columns:32vw 1fr;gap:2vw 5vw;align-items:start}
   .gl-wrap{width:5vw;height:5vw;min-width:64px;min-height:64px;margin:0 0 1.2vw 0} .gl{width:100%;height:100%;font-size:1.4vw}
-  h1{text-align:left} h1 .sol{font-size:1.05vw;margin-bottom:.4vw} h1 .ghost,h1 .paint{font-size:3.1vw}
+  h1{text-align:left} h1 .sol{font-size:1.15vw;margin-bottom:.5vw} 
+  h1 .ghost,h1 .paint{font-size:4.4vw; line-height:.9}
   .bottom{grid-column:1;grid-row:2} .services{grid-column:2;grid-row:1 / span 2}
-  li{padding:1vw 0} li .ghost, li .paint{font-size:.95vw} li i{font-size:.65vw}
-  .contact-box{padding:.9vw} .contact-box .name{font-size:.82vw} .contact-box .data{font-size:.82vw;margin-top:.4vw;opacity:.8;letter-spacing:.02em}
+  li{padding:1.15vw 0}
+  li .ghost, li .paint{font-size:1.45vw}
+  li i{font-size:.82vw; font-weight:400}
+  .contact-box{padding:.9vw} .contact-box .name{font-size:.82vw} .contact-box .data{font-size:.82vw;margin-top:.4vw}
   .wa{padding:.9vw;font-size:.85vw;margin-top:.7vw}
   .foot{grid-column:1 / -1;margin-top:2vw;font-size:.55vw;padding-top:1vw;border-top:1px solid rgba(180,220,255,.08)}
 }
@@ -83,13 +90,13 @@ li .brush{width:34px;height:20px} li .brush::before{width:15px;height:15px} li .
     </div>
     <div class="services">
       <ul id="services">
-        <li><span class="stack"><span class="ghost">PLOMERÍA</span><span class="paint">PLOMERÍA</span></span><i>Llaves y fugas</i><span class="brush"></span></li>
-        <li><span class="stack"><span class="ghost">ELECTRICIDAD</span><span class="paint">ELECTRICIDAD</span></span><i>Cortos y luminarias</i><span class="brush"></span></li>
-        <li><span class="stack"><span class="ghost">PINTURA</span><span class="paint">PINTURA</span></span><i>Interior y exterior</i><span class="brush"></span></li>
-        <li><span class="stack"><span class="ghost">ALBAÑILERÍA</span><span class="paint">ALBAÑILERÍA</span></span><i>Remates finos</i><span class="brush"></span></li>
-        <li><span class="stack"><span class="ghost">CONSTRUCCIÓN</span><span class="paint">CONSTRUCCIÓN</span></span><i>Obra menor</i><span class="brush"></span></li>
-        <li><span class="stack"><span class="ghost">PISOS</span><span class="paint">PISOS</span></span><i>Colocación y pulido</i><span class="brush"></span></li>
-        <li><span class="stack"><span class="ghost">CISTERNAS</span><span class="paint">CISTERNAS</span></span><i>Mantenimiento</i><span class="brush"></span></li>
+        <li><span class="stack"><span class="ghost">Plomería</span><span class="paint">Plomería</span></span><i>Llaves y fugas</i><span class="brush"></span></li>
+        <li><span class="stack"><span class="ghost">Electricidad</span><span class="paint">Electricidad</span></span><i>Cortos y luminarias</i><span class="brush"></span></li>
+        <li><span class="stack"><span class="ghost">Pintura</span><span class="paint">Pintura</span></span><i>Interior y exterior</i><span class="brush"></span></li>
+        <li><span class="stack"><span class="ghost">Albañilería</span><span class="paint">Albañilería</span></span><i>Remates finos</i><span class="brush"></span></li>
+        <li><span class="stack"><span class="ghost">Construcción</span><span class="paint">Construcción</span></span><i>Obra menor</i><span class="brush"></span></li>
+        <li><span class="stack"><span class="ghost">Pisos</span><span class="paint">Pisos</span></span><i>Colocación y pulido</i><span class="brush"></span></li>
+        <li><span class="stack"><span class="ghost">Cisternas</span><span class="paint">Cisternas</span></span><i>Mantenimiento</i><span class="brush"></span></li>
       </ul>
     </div>
     <div class="bottom">
